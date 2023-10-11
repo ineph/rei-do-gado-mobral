@@ -11,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(of = "id")
-public class FazendaModel {
+public class Fazenda {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,11 +20,11 @@ public class FazendaModel {
     private String nome;
     private String area;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cd_id_usuario")
     private Usuario usuario;
 
-    public FazendaModel(FazendaNewDTO fazenda) {
+    public Fazenda(FazendaDTO fazenda) {
         this.nome = fazenda.nome();
         this.area = fazenda.area();
         this.usuario = new Usuario();

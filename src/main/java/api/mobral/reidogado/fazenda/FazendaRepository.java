@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FazendaRepository extends JpaRepository<FazendaModel, Long> {
-    List<FazendaModel> findByUsuario(Usuario usuario);
+public interface FazendaRepository extends JpaRepository<Fazenda, Long> {
+    List<Fazenda> findByUsuario(Usuario usuario);
 }
