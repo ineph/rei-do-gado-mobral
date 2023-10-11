@@ -2,7 +2,7 @@ package api.mobral.reidogado.fazenda;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record DadosNovaFazenda(
+public record FazendaNewDTO(
 
         @NotBlank
         String nome,
@@ -11,6 +11,6 @@ public record DadosNovaFazenda(
         String area,
 
         @NotBlank
-        Integer cd_id_usuario
+        Long cd_id_usuario
 ) {
 }

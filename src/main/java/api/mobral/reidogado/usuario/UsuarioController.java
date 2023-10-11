@@ -1,4 +1,4 @@
-package api.mobral.reidogado.controller;
+package api.mobral.reidogado.usuario;
 
 import api.mobral.reidogado.usuario.DadosNovoUsuario;
 import api.mobral.reidogado.usuario.Usuario;

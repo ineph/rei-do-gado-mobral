@@ -1,16 +1,12 @@
-package api.mobral.reidogado.controller;
+package api.mobral.reidogado.fazenda;
 
-import api.mobral.reidogado.fazenda.DadosNovaFazenda;
-import api.mobral.reidogado.fazenda.Fazenda;
-import api.mobral.reidogado.fazenda.FazendaRepository;
 import api.mobral.reidogado.usuario.Usuario;
 import api.mobral.reidogado.usuario.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -23,15 +19,24 @@ public class FazendaController {
 
     @PostMapping
     @Transactional
-    public void cadastrarFazenda(@RequestBody DadosNovaFazenda novaFazenda) {
+    public void cadastrarFazenda(@RequestBody FazendaNewDTO novaFazenda) {
 
         Usuario usuario = usuarioRepo.findById(novaFazenda.cd_id_usuario().longValue()).orElseThrow(() -> new RuntimeException());
 
-        Fazenda fazenda = Fazenda.builder()
+        FazendaModel fazenda = FazendaModel.builder()
                 .nome(novaFazenda.nome())
                 .area(novaFazenda.area())
                 .usuario(usuario).build();
 
         fazendaRepo.save(fazenda);
+    }
+
+    @GetMapping(path = "/{idUsuarioFazenda}")
+    @Transactional
+    public List<FazendaNewDTO> buscarFazendasUsuarios(@PathVariable Long idUsuarioFazenda) {
+        Usuario usuario = usuarioRepo.findById(idUsuarioFazenda).orElseThrow(() -> new RuntimeException());
+        return fazendaRepo.findByUsuario(usuario).stream().map(fazenda -> new FazendaNewDTO(
+                fazenda.getNome(), fazenda.getArea(), fazenda.getId()
+        )).toList();
     }
 }
