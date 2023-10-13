@@ -10,6 +10,8 @@
       steps:
         - name: Checkout
           uses: actions/checkout@v2
+          run: |
+            echo "primeiro checkout"
 
         - name: Configure AWS Credendials
           uses: aws-actions/configure-AWS-credentials@v1
@@ -17,10 +19,14 @@
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             aws-region: us-east-1
+          run: |
+            echo "AWS credencias"
 
         - name: Login to Amazon ECR
           id: login-ecr
           uses: aws-actions/amazon-ecr-login@v1
+          run: |
+            echo "login AWS"
 
         - name: Build, Tag, and Push the image to Amazon ECR
           id: build-image
