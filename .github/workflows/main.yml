@@ -8,7 +8,7 @@
       runs-on: ubuntu-latest
       steps:
         - id: deploy
-          uses: public.ecr.aws/f1b5y2a7/rei-do-gado
+          uses: public.ecr.aws/f1b5y2a7/rei-do-gado@v0.0.1
           with:
             aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
