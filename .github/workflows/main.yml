@@ -24,6 +24,7 @@
 
         - name: Build, Tag, and Push the image to Amazon ECR
           id: build-image
+          uses: public.ecr.aws/f1b5y2a7/rei-do-gado
           env:
             ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
             ECR_REPOSITORY: rei-do-gado
