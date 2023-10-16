@@ -10,7 +10,7 @@
         - name: Checkout
           uses: actions/checkout@v1
         - id: deploy
-          uses: public.ecr.aws/f1b5y2a7/rei-do-gado@v0.0.1
+          uses: public.ecr.aws/f1b5y2a7/rei-do-gado@v0.0.0
           with:
             aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
