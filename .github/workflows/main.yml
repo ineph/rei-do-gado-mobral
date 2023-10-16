@@ -42,6 +42,11 @@
             ECR_REPOSITORY: rei-do-gado
             IMAGE_TAG: latest
           run: |
+            echo 'registro ecr ->>>'
+            echo $ECR_REGISTRY
+            echo
+            echo 'repo ecr ->>>>'
+            echo $$ECR_REPOSITORY
             echo docker build:
             docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
             docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
