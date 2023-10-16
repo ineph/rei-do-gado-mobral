@@ -3,52 +3,53 @@
   on:
     push:
       branches: [ main ]
-  jobs:
-    EC2-Deploy:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v1
-        - id: deploy
-          uses: f1b5y2a7/rei-do-gado@v0.0.0
-          with:
-            aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            aws_default_region: sa-east-1
-            dot_env: ${{ secrets.DOT_ENV }}
-
-
 #  jobs:
-#    build-and-push:
-#      name: Build and push to ECR
+#    EC2-Deploy:
 #      runs-on: ubuntu-latest
 #      steps:
 #        - name: Checkout
-#          uses: actions/checkout@v2
-#
-#        - name: Configure AWS Credendials
-#          uses: aws-actions/configure-AWS-credentials@v2
+#          uses: actions/checkout@v1
+#        - id: deploy
+#          uses: f1b5y2a7/rei-do-gado@v0.0.0
 #          with:
-#            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#            aws-region: sa-east-1
-#
-#        - name: Login to Amazon ECR
-#          id: login-ecr
-#          uses: aws-actions/amazon-ecr-login@v2
-#
-#        - name: Build, Tag, and Push the image to Amazon ECR
+#            aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#            aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#            aws_default_region: sa-east-1
+#            dot_env: ${{ secrets.DOT_ENV }}
+
+
+  jobs:
+    build-and-push:
+      name: Build and push to ECR
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+
+        - name: Configure AWS Credendials
+          uses: aws-actions/configure-AWS-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: sa-east-1
+
+        - name: Login to Amazon ECR
+          id: login-ecr
+          uses: aws-actions/amazon-ecr-login@v1
+
+        - name: Build, Tag, and Push the image to Amazon ECR
 #          id: build-image
-#          env:
-#            ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-#            ECR_REPOSITORY: rei-do-gado
-#            IMAGE_TAG: latest
-#          run: |
-#            echo 'registro ecr ->>>'
-#            echo $ECR_REGISTRY
-#            echo
-#            echo 'repo ecr ->>>>'
-#            echo $$ECR_REPOSITORY
-#            echo docker build:
-#            docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-#            docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          env:
+            ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+            ECR_REPOSITORY: rei-do-gado
+            IMAGE_TAG: latest
+          run: |
+            echo 'registro ecr ->>>'
+            echo $ECR_REGISTRY
+            echo
+            echo 'repo ecr ->>>>'
+            echo $$ECR_REPOSITORY
+            echo docker build:
+            docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+            docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
