@@ -3,6 +3,19 @@
   on:
     push:
       branches: [ main ]
+#  jobs:
+#    EC2-Deploy:
+#      runs-on: ubuntu-latest
+#      steps:
+#        - id: deploy
+#          uses: public.ecr.aws/f1b5y2a7/rei-do-gado
+#          with:
+#            aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#            aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#            aws_default_region: sa-east-1
+#            dot_env: ${{ secrets.DOT_ENV }}
+
+
   jobs:
     build-and-push:
       name: Build and push to ECR
@@ -16,7 +29,7 @@
           with:
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            aws-region: us-east-1
+            aws-region: sa-east-1
 
         - name: Login to Amazon ECR
           id: login-ecr
@@ -24,12 +37,11 @@
 
         - name: Build, Tag, and Push the image to Amazon ECR
           id: build-image
-          uses: public.ecr.aws/f1b5y2a7/rei-do-gado
           env:
             ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
             ECR_REPOSITORY: rei-do-gado
             IMAGE_TAG: latest
-#          run: |
-#            echo docker build:
-#            docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-#            docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          run: |
+            echo docker build:
+            docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+            docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
