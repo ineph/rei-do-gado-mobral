@@ -1,5 +1,6 @@
-package api.mobral.reidogado.usuario;
+package api.mobral.reidogado.model;
 
+import api.mobral.reidogado.DTO.DadosNovoUsuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

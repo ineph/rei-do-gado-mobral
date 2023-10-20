@@ -1,4 +1,4 @@
-package api.mobral.reidogado.usuario;
+package api.mobral.reidogado.DTO;
 
 
 import jakarta.validation.constraints.Email;

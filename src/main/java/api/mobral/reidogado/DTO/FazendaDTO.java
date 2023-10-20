@@ -1,4 +1,4 @@
-package api.mobral.reidogado.fazenda;
+package api.mobral.reidogado.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 

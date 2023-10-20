@@ -1,8 +1,8 @@
-package api.mobral.reidogado.usuario;
+package api.mobral.reidogado.controller;
 
-import api.mobral.reidogado.usuario.DadosNovoUsuario;
-import api.mobral.reidogado.usuario.Usuario;
-import api.mobral.reidogado.usuario.UsuarioRepository;
+import api.mobral.reidogado.DTO.DadosNovoUsuario;
+import api.mobral.reidogado.model.Usuario;
+import api.mobral.reidogado.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

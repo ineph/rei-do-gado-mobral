@@ -1,4 +1,7 @@
-package api.mobral.reidogado.fazenda;
+package api.mobral.reidogado.DTO;
+
+import api.mobral.reidogado.DTO.FazendaDTO;
+import api.mobral.reidogado.model.Fazenda;
 
 import java.util.function.Function;
 

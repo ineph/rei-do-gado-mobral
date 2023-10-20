@@ -1,6 +1,6 @@
-package api.mobral.reidogado.fazenda;
+package api.mobral.reidogado.model;
 
-import api.mobral.reidogado.usuario.Usuario;
+import api.mobral.reidogado.DTO.FazendaDTO;
 import jakarta.persistence.*;
 import lombok.*;
 

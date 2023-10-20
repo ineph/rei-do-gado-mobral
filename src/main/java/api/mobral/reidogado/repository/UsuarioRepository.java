@@ -1,5 +1,6 @@
-package api.mobral.reidogado.usuario;
+package api.mobral.reidogado.repository;
 
+import api.mobral.reidogado.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

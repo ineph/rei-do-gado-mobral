@@ -1,7 +1,11 @@
-package api.mobral.reidogado.fazenda;
+package api.mobral.reidogado.controller;
 
-import api.mobral.reidogado.usuario.Usuario;
-import api.mobral.reidogado.usuario.UsuarioRepository;
+import api.mobral.reidogado.model.Fazenda;
+import api.mobral.reidogado.DTO.FazendaDTO;
+import api.mobral.reidogado.DTO.FazendaInput;
+import api.mobral.reidogado.repository.FazendaRepository;
+import api.mobral.reidogado.model.Usuario;
+import api.mobral.reidogado.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

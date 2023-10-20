@@ -4,3 +4,6 @@ spring:
     username: ${DB_USER:user}
     url: ${DB_URL:localhost}
     password: ${DB_PASS:123}
+
+server:
+  port: 8081
