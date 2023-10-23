@@ -1,11 +1,8 @@
 package api.mobral.reidogado.DTO;
 
-import lombok.Data;
-
 import java.util.List;
 
-@Data
-public class GeometryDTO {
-    private String type;
-    private List<List<List<Double>>> coordinates;
-}
+public record GeometryDTO(
+        String type,
+        List<List<List<Double>>> coordinates
+) {}
