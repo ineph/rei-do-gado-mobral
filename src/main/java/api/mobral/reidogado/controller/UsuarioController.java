@@ -10,10 +10,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class UsuarioController {
@@ -28,5 +27,14 @@ public class UsuarioController {
     @Transactional
     public ResponseEntity<UsuarioModel> cadastrarUsuario(@RequestBody @Valid UsuarioRecordDto usuarioBody){
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.criarusuario(usuarioBody));
+    }
+
+    @GetMapping("usuarios/{usuarioId}")
+    public ResponseEntity<Object> getUsuariosById(@PathVariable(value = "usuarioId") Long usuarioId){
+        Optional<UsuarioModel> usuarioModel = usuarioService.getById(usuarioId);
+        if (usuarioModel.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Usuario com id " + usuarioId + " não encontrado.");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(usuarioService.getById(usuarioId));
     }
 }

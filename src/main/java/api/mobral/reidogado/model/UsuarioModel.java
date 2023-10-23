@@ -22,6 +22,6 @@ public class UsuarioModel {
     @Column(name = "nome")
     private String nome;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<FazendaModel> fazendas;
+//    @OneToMany(mappedBy = "usuario")
+//    private List<FazendaModel> fazendas;
 }

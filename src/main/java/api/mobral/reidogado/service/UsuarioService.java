@@ -5,6 +5,8 @@ import api.mobral.reidogado.model.UsuarioModel;
 import api.mobral.reidogado.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UsuarioService {
 
@@ -18,5 +20,9 @@ public class UsuarioService {
         UsuarioModel usuarioModel = new UsuarioModel();
         usuarioModel.setNome(usuario.nome());
         return usuarioRepository.save(usuarioModel);
+    }
+
+    public Optional<UsuarioModel> getById(Long idUsuario){
+        return usuarioRepository.findById(idUsuario);
     }
 }

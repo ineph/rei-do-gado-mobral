@@ -4,6 +4,7 @@ import api.mobral.reidogado.DTO.FazendaDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Data
 @Table(name = "fazendas")
 @Entity(name = "Fazenda")
 @Getter
@@ -21,7 +22,7 @@ public class FazendaModel {
     @Column(name = "nome_fazenda")
     private String nomeFazenda;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cd_id_usuario")
     private UsuarioModel usuario;
 
