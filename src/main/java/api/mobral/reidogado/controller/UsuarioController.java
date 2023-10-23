@@ -1,25 +1,32 @@
 package api.mobral.reidogado.controller;
 
-import api.mobral.reidogado.DTO.DadosNovoUsuario;
-import api.mobral.reidogado.model.Usuario;
+import api.mobral.reidogado.DTO.UsuarioRecordDto;
+import api.mobral.reidogado.model.UsuarioModel;
 import api.mobral.reidogado.repository.UsuarioRepository;
+import api.mobral.reidogado.service.UsuarioService;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/usuarios")
 public class UsuarioController {
 
-    @Autowired
-    private UsuarioRepository repo;
+    public final UsuarioService usuarioService;
 
-    @PostMapping
+    UsuarioController(UsuarioService usuarioService){
+        this.usuarioService = usuarioService;
+    }
+
+    @PostMapping("usuarios")
     @Transactional
-    public void cadastrarUsuario(@RequestBody DadosNovoUsuario novoUsuario){
-        repo.save(new Usuario(novoUsuario));
+    public ResponseEntity<UsuarioModel> cadastrarUsuario(@RequestBody @Valid UsuarioRecordDto usuarioBody){
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.criarusuario(usuarioBody));
     }
 }

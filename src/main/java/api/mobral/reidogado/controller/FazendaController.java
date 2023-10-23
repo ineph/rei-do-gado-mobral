@@ -1,10 +1,10 @@
 package api.mobral.reidogado.controller;
 
-import api.mobral.reidogado.model.Fazenda;
+import api.mobral.reidogado.model.FazendaModel;
 import api.mobral.reidogado.DTO.FazendaDTO;
 import api.mobral.reidogado.DTO.FazendaInput;
 import api.mobral.reidogado.repository.FazendaRepository;
-import api.mobral.reidogado.model.Usuario;
+import api.mobral.reidogado.model.UsuarioModel;
 import api.mobral.reidogado.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -25,12 +25,11 @@ public class FazendaController {
     @Transactional
     public void cadastrarFazenda(@RequestBody FazendaInput novaFazenda) {
 
-        Usuario usuario = usuarioRepo.findById(novaFazenda.cd_id_usuario().longValue()).orElseThrow(() -> new RuntimeException());
+        UsuarioModel usuarioModel = usuarioRepo.findById(novaFazenda.cd_id_usuario().longValue()).orElseThrow(() -> new RuntimeException());
 
-        Fazenda fazenda = Fazenda.builder()
-                .nome(novaFazenda.nome())
-                .area(novaFazenda.area())
-                .usuario(usuario).build();
+        FazendaModel fazenda = FazendaModel.builder()
+                .nomeFazenda(novaFazenda.nome())
+                .usuario(usuarioModel).build();
 
         fazendaRepo.save(fazenda);
     }
@@ -38,9 +37,9 @@ public class FazendaController {
     @GetMapping(path = "/{idUsuarioFazenda}")
     @Transactional
     public List<FazendaDTO> buscarFazendasUsuarios(@PathVariable Long idUsuarioFazenda) {
-        Usuario usuario = usuarioRepo.findById(idUsuarioFazenda).orElseThrow(() -> new RuntimeException());
-        return fazendaRepo.findByUsuario(usuario).stream().map(fazenda -> new FazendaDTO(
-                fazenda.getNome(), fazenda.getArea(), fazenda.getId()
+        UsuarioModel usuarioModel = usuarioRepo.findById(idUsuarioFazenda).orElseThrow(() -> new RuntimeException());
+        return fazendaRepo.findByUsuario(usuarioModel).stream().map(fazenda -> new FazendaDTO(
+                fazenda.getNomeFazenda(), fazenda.getUsuario()
         )).toList();
     }
 }

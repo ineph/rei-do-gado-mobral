@@ -8,9 +8,6 @@ public record FazendaInput(
         String nome,
 
         @NotBlank
-        String area,
-
-        @NotBlank
         Long cd_id_usuario) {
 
 }

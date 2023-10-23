@@ -8,9 +8,6 @@ public record FazendaDTO<Usuario>(
         String nome,
 
         @NotBlank
-        String area,
-
-        @NotBlank
         Usuario usuario
 ) {
 }

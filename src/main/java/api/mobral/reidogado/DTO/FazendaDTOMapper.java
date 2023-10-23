@@ -1,13 +1,12 @@
 package api.mobral.reidogado.DTO;
 
-import api.mobral.reidogado.DTO.FazendaDTO;
-import api.mobral.reidogado.model.Fazenda;
+import api.mobral.reidogado.model.FazendaModel;
 
 import java.util.function.Function;
 
-public class FazendaDTOMapper implements Function<Fazenda, FazendaDTO> {
+public class FazendaDTOMapper implements Function<FazendaModel, FazendaDTO> {
     @Override
-    public FazendaDTO apply(Fazenda fazenda){
-        return new FazendaDTO(fazenda.getNome(), fazenda.getArea(), fazenda.getId());
+    public FazendaDTO apply(FazendaModel fazenda){
+        return new FazendaDTO(fazenda.getNomeFazenda(), fazenda.getId());
     }
 }
