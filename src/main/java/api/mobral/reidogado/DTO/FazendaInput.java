@@ -8,7 +8,9 @@ public record FazendaInput(
         String nome,
 
         @NotBlank
-        Long cd_id_usuario) {
+        Long cd_id_usuario,
 
-}
+        @NotBlank
+        GeoJsonDTO geom)
+{}
 
