@@ -1,6 +1,6 @@
 package api.mobral.reidogado.DTO;
 
 public record TalhaoAPIBody(
-        long cdIdFfazenda,
+        long cdIdFazenda,
         GeoJsonDTO geom
 ) {}

@@ -10,12 +10,6 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class TalhaoManagerAPI {
 
-//    private final RestTemplate restTemplate;
-//
-//    public TalhaoManagerAPI(RestTemplate restTemplate){
-//        this.restTemplate = restTemplate;
-//    }
-
     public void postNovoTalhao(String body) {
         //TODO: adicionar variavel de ambiente:
         String url = "http://localhost:8080/cadastro";
@@ -24,6 +18,6 @@ public class TalhaoManagerAPI {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> entity = new HttpEntity<>(body, headers);
 
-        String res = restTemplate.postForObject(url, entity, String.class);
+        restTemplate.postForObject(url, entity, String.class);
     }
 }
