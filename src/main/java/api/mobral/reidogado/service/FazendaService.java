@@ -1,6 +1,5 @@
 package api.mobral.reidogado.service;
 
-import api.mobral.reidogado.DTO.FazendaDTO;
 import api.mobral.reidogado.DTO.FazendaInput;
 import api.mobral.reidogado.DTO.TalhaoAPIBody;
 import api.mobral.reidogado.exception.CustomException;
@@ -8,7 +7,6 @@ import api.mobral.reidogado.externals.TalhaoManagerAPI;
 import api.mobral.reidogado.model.FazendaModel;
 import api.mobral.reidogado.model.UsuarioModel;
 import api.mobral.reidogado.repository.FazendaRepository;
-import api.mobral.reidogado.repository.UsuarioRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -49,13 +47,10 @@ public class FazendaService {
         ObjectMapper objMap = new ObjectMapper();
         try {
             String talhaoJson = objMap.writeValueAsString(talhaoBody);
-            System.out.println(talhaoJson);
-
             talhaoManagerAPI.postNovoTalhao(talhaoJson);
         }
         catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("asdasdas");
     }
 }
